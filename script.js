@@ -34,14 +34,30 @@ const searchButton = document.querySelector(".search-button");
 searchButton.addEventListener("click", function () {
   const inputKeyword = document.querySelector(".input-keyword");
   fetch("http://www.omdbapi.com/?apikey=dca61bcc&s=" + inputKeyword.value)
-    .then((response) => response.json()) //masih promise
+    .then((response) => response.json()) //still promise
     .then((response) => {
       const movies = response.Search;
       let cards = "";
       movies.forEach((movie) => (cards += showCards(movie)));
       const movieContainer = document.querySelector(".movie-container");
       movieContainer.innerHTML = cards;
-    }); //agar jalan secara asynchronous
+
+      // when the detail button is clicked
+      const modalDetailButton = document.querySelectorAll(".modal-detail-button");
+      modalDetailButton.forEach((btn) => {
+        // change NodeList to Single Element
+        btn.addEventListener("click", function () {
+          const imdbid = this.dataset.imdbid;
+          fetch("http://www.omdbapi.com/?apikey=dca61bcc&i=" + imdbid)
+            .then((response) => response.json())
+            .then((m) => {
+              const movieDetail = showMovieDetail(m);
+              const modalBody = document.querySelector(".modal-body");
+              modalBody.innerHTML = movieDetail;
+            });
+        });
+      });
+    }); //to run asynchronous
 });
 
 function showCards(m) {
