@@ -1,30 +1,32 @@
-$.ajax({
-  url: "http://www.omdbapi.com/?apikey=dca61bcc&s=Harry Potter",
-  success: (results) => {
-    const movies = results.Search;
-    let cards = "";
-    movies.forEach((m) => {
-      cards += showCards(m);
-    });
-    $(".movie-container").html(cards);
-    // if button detail on click
-    $(".modal-detail-button").on("click", function () {
-      //   console.log($(this).data("imdbid"));
-      $.ajax({
-        url: "http://www.omdbapi.com/?apikey=dca61bcc&i=" + $(this).data("imdbid"),
-        success: (m) => {
-          const movieDetail = showMovieDetail(m);
-          $(".modal-body").html(movieDetail);
-        },
-        error: (err) => {
-          console.log(err.responseText);
-        },
+$(".search-button").on("click", function () {
+  $.ajax({
+    url: "http://www.omdbapi.com/?apikey=dca61bcc&s=" + $(".input-keyword").val(),
+    success: (results) => {
+      const movies = results.Search;
+      let cards = "";
+      movies.forEach((m) => {
+        cards += showCards(m);
       });
-    });
-  },
-  error: (err) => {
-    console.log(err.responseText);
-  },
+      $(".movie-container").html(cards);
+      // if button detail on click
+      $(".modal-detail-button").on("click", function () {
+        //   console.log($(this).data("imdbid"));
+        $.ajax({
+          url: "http://www.omdbapi.com/?apikey=dca61bcc&i=" + $(this).data("imdbid"),
+          success: (m) => {
+            const movieDetail = showMovieDetail(m);
+            $(".modal-body").html(movieDetail);
+          },
+          error: (err) => {
+            console.log(err.responseText);
+          },
+        });
+      });
+    },
+    error: (err) => {
+      console.log(err.responseText);
+    },
+  });
 });
 
 function showCards(m) {
