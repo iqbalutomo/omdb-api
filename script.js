@@ -61,7 +61,7 @@ searchButton.addEventListener("click", function () {
 });
 
 function showCards(m) {
-  return `<div class="col-md-4 my-5">
+  return `<div class="col-md-3 my-5">
             <div class="card">
                 <img src="${m.Poster}" class="card-img-top" />
                 <div class="card-body">
