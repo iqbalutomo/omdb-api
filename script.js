@@ -1,32 +1,47 @@
-$(".search-button").on("click", function () {
-  $.ajax({
-    url: "http://www.omdbapi.com/?apikey=dca61bcc&s=" + $(".input-keyword").val(),
-    success: (results) => {
-      const movies = results.Search;
+// $(".search-button").on("click", function () {
+//   $.ajax({
+//     url: "http://www.omdbapi.com/?apikey=dca61bcc&s=" + $(".input-keyword").val(),
+//     success: (results) => {
+//       const movies = results.Search;
+//       let cards = "";
+//       movies.forEach((m) => {
+//         cards += showCards(m);
+//       });
+//       $(".movie-container").html(cards);
+//       // if button detail on click
+//       $(".modal-detail-button").on("click", function () {
+//         //   console.log($(this).data("imdbid"));
+//         $.ajax({
+//           url: "http://www.omdbapi.com/?apikey=dca61bcc&i=" + $(this).data("imdbid"),
+//           success: (m) => {
+//             const movieDetail = showMovieDetail(m);
+//             $(".modal-body").html(movieDetail);
+//           },
+//           error: (err) => {
+//             console.log(err.responseText);
+//           },
+//         });
+//       });
+//     },
+//     error: (err) => {
+//       console.log(err.responseText);
+//     },
+//   });
+// });
+
+// fetch
+const searchButton = document.querySelector(".search-button");
+searchButton.addEventListener("click", function () {
+  const inputKeyword = document.querySelector(".input-keyword");
+  fetch("http://www.omdbapi.com/?apikey=dca61bcc&s=" + inputKeyword.value)
+    .then((response) => response.json()) //masih promise
+    .then((response) => {
+      const movies = response.Search;
       let cards = "";
-      movies.forEach((m) => {
-        cards += showCards(m);
-      });
-      $(".movie-container").html(cards);
-      // if button detail on click
-      $(".modal-detail-button").on("click", function () {
-        //   console.log($(this).data("imdbid"));
-        $.ajax({
-          url: "http://www.omdbapi.com/?apikey=dca61bcc&i=" + $(this).data("imdbid"),
-          success: (m) => {
-            const movieDetail = showMovieDetail(m);
-            $(".modal-body").html(movieDetail);
-          },
-          error: (err) => {
-            console.log(err.responseText);
-          },
-        });
-      });
-    },
-    error: (err) => {
-      console.log(err.responseText);
-    },
-  });
+      movies.forEach((movie) => (cards += showCards(movie)));
+      const movieContainer = document.querySelector(".movie-container");
+      movieContainer.innerHTML = cards;
+    }); //agar jalan secara asynchronous
 });
 
 function showCards(m) {
