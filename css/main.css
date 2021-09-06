@@ -37,9 +37,15 @@ body .search .search-button:focus {
 }
 
 body .card {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
           box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
+}
+
+body .card .card-img-top {
+  height: 384px;
 }
 
 body .card .card-title {
@@ -54,5 +60,39 @@ body .card .modal-detail-button {
 body .card .modal-detail-button:hover {
   background-color: slateblue;
   color: white;
+}
+
+body .modal .modal-content {
+  background-color: rgba(75, 75, 75, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
+          box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
+}
+
+body .modal .modal-content .btn-close {
+  background-color: white;
+}
+
+body .modal .modal-content .modal-header {
+  border: 0 solid transparent;
+}
+
+body .modal .modal-content .modal-title {
+  color: white;
+}
+
+body .modal .modal-content .modal-body {
+  margin-bottom: 80px;
+}
+
+body .modal .modal-content .modal-body .list-group-item {
+  background-color: transparent;
+  color: white;
+  border: 0 solid transparent;
+}
+
+body .modal .modal-content .modal-body .list-group-item h4 {
+  margin-top: -14px;
 }
 /*# sourceMappingURL=main.css.map */
