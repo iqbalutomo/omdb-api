@@ -61,3 +61,40 @@ body {
     }
   }
 }
+
+.modal {
+  // background-color: transparent;
+  // backdrop-filter: blur(6px);
+
+  .modal-content {
+    background-color: rgba($color: #4b4b4b, $alpha: 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px 5px rgba($color: black, $alpha: 0.7);
+
+    .btn-close {
+      background-color: white;
+    }
+
+    .modal-header {
+      border: 0 solid transparent;
+    }
+
+    .modal-title {
+      color: white;
+    }
+
+    .modal-body {
+      margin-bottom: 80px;
+
+      .list-group-item {
+        background-color: transparent;
+        color: white;
+        border: 0 solid transparent;
+      }
+
+      .list-group-item h4 {
+        margin-top: -14px;
+      }
+    }
+  }
+}
